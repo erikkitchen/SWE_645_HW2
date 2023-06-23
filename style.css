@@ -1,0 +1,119 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+html{
+    height: -webkit-fill-available; /* We have to fix html height */
+}
+
+body{
+    background-color: #006633;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+
+nav{
+    background-color: black;
+}
+
+.gmu_Logo{
+    padding: 20px;
+    width: 100px;
+}  
+
+#studentForm{
+    width: 65%;
+    margin: auto;
+    padding: 20px;
+    padding-bottom: 100px;
+    background-color: white;
+}
+
+.formItem{
+   margin-bottom: 20px;
+}
+
+.half{
+    display: inline-block;
+    width: 49%;
+}
+
+.rightItem{
+    float: right;
+}
+
+.input{
+    width: 100%;
+    height: 40px;
+}
+
+#raffle{
+    height: 40px;
+}
+
+#freeform{
+    width: 100%;
+}
+
+label{
+    display:inline-block;
+    margin-bottom: 5px;
+}
+
+.required{
+    color: red;
+}
+
+.error{
+    display: none;
+    text-align: center;
+    margin: 0;
+    padding-top: 10px;
+    color: white;;
+    background-color: #EA5252;
+    border-radius: 0 0 15px 15px;
+    height: 35px;
+}
+
+.errorSpecial{
+    display: none;
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 15px;
+    color: white;
+    background-color: #EA5252;
+    border-radius: 15px 15px 15px 15px;
+    height: 35px;
+    width: 35%;
+}
+
+#buttons{
+    float: right;
+}
+
+.form_Button{
+    color: white;
+    padding: 15px;
+    border: none;
+    margin: 10px;
+    border-radius: 15px 15px 15px 15px;
+    width: 100px;
+}
+
+.form_Button:hover{
+    cursor: pointer;
+}
+
+.cancel{
+    background-color: #EA5252;
+}
+
+.submit{
+    background-color: green;
+}
+
+footer{
+    height: 50px;
+    background-color: #FFCC33;
+}

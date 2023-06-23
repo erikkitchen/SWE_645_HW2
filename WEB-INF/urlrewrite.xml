@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlrewrite
+    xmlns="http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+
+    <rule>
+        <from>index.jsp</from>
+        <to>Student_Survey</to>
+    </rule>
+
+</urlrewrite>
