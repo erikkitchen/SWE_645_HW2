@@ -5,7 +5,7 @@ pipeline {
         stage('Create new war File') {
             steps {
                 echo 'Building war file'
-                git 'https://github.com/erikkitchen/SWE_645_HW2.git'
+                git branch: 'main', url: 'https://github.com/erikkitchen/SWE_645_HW2.git'
                 sh 'rm -rf *.war'
                 sh 'jar -cvf Student_Survey.war -C ${WORKSPACE}/ .'
             }
