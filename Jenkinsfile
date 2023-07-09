@@ -27,8 +27,8 @@ pipeline {
         stage('Deploy cluster') {
             steps {
                 echo 'Deploy cluster through Rancher'
-                sh 'kubectl --kubeconfig /var/lib/jenkins/.kube/config set image deployment/gmustudentsurvey container-0=erikkitchen/gmustudentsurvey:latest'
-                sh 'kubectl --kubeconfig /var/lib/jenkins/.kube/config rollout restart deployment/gmustudentsurvey'
+                sh 'kubectl --kubeconfig /var/lib/jenkins/.kube/config set image deployment/Cluster container-0=erikkitchen/gmustudentsurvey:latest'
+                sh 'kubectl --kubeconfig /var/lib/jenkins/.kube/config rollout restart deployment/Cluster'
             }
         }
     }
