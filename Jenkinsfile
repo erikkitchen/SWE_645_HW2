@@ -34,6 +34,8 @@ pipeline {
                 sh 'kubectl config view'
 				sh "kubectl get deployments"
 				sh "kubectl set image deployment/gmustudentsurveydeploy gmustudentsurvey=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
+                sh 'kubectl get services'
+                sh 'kubectl get services -o wide'
             }
         }
     }
