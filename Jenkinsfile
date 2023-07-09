@@ -33,7 +33,7 @@ pipeline {
                 sh 'kubectl create deployment gmustudentsurveydeploy --image=erikkitchen/gmustudentsurvey'
                 sh 'kubectl config view'
 				sh "kubectl get deployments"
-				sh "kubectl set image deployment/erikkitchendeploy container-0=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
+				sh "kubectl set image deployment/gmustudentsurveydeploy container-0=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
             }
         }
     }
