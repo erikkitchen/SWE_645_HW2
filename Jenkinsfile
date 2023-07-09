@@ -27,9 +27,12 @@ pipeline {
         stage('Deploy cluster') {
             steps {
                 echo 'Deploy cluster through Rancher'
-                sh 'kubectl get deployments --kubeconfig /var/lib/jenkins/.kube/config'
+                /*sh 'kubectl get deployments --kubeconfig /var/lib/jenkins/.kube/config'
                 sh 'kubectl --kubeconfig /var/lib/jenkins/.kube/config set image deployment/cluster container-0=erikkitchen/gmustudentsurvey:latest'
-                sh 'kubectl --kubeconfig /var/lib/jenkins/.kube/config rollout restart deployment/cluster'
+                sh 'kubectl --kubeconfig /var/lib/jenkins/.kube/config rollout restart deployment/cluster'*/
+                sh 'kubectl config view'
+				sh "kubectl get deployments"
+				sh "kubectl set image deployment/swe645deploy container-0=sudheera897/swe645:${env.BUILD_ID}"
             }
         }
     }
