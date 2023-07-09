@@ -32,7 +32,7 @@ pipeline {
                 sh 'kubectl --kubeconfig /var/lib/jenkins/.kube/config rollout restart deployment/cluster'*/
                 sh 'kubectl config view'
 				sh "kubectl get deployments"
-				sh "kubectl set image deployment/swe645deploy container-0=sudheera897/swe645:${env.BUILD_ID}"
+				sh "kubectl set image deployment/erikkitchen container-0=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
             }
         }
     }
