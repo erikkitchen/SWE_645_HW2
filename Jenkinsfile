@@ -11,20 +11,18 @@ pipeline {
             }
         }
             
-         stage('Build Student Survey image') {
+         stage('Build and push Student Survey image') {
             steps {
-                echo 'Building Student Survey image'
-                sh "docker login -u erikkitchen -p ${DOCKERHUB_PASS}"
-                sh 'docker build -t erikkitchen/gmustudentsurvey:latest .'
+        echo 'Building Student Survey image'
+        withCredentials([usernamePassword(credentialsId: 'DockerLogin', usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_PASS')]) {
+            sh "docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS"
+            sh 'docker build -t erikkitchen/gmustudentsurvey:latest .'
+            echo 'pushing Student Survey image'
+            sh 'docker push erikkitchen/gmustudentsurvey:latest'
+                }
             }
         }
         
-        stage('Push Student Survey image') {
-            steps {
-                echo 'Building Student Survey image'
-                sh 'docker push erikkitchen/gmustudentsurvey:latest'
-            }
-        }
         
         stage('Deploy cluster') {
             steps {
