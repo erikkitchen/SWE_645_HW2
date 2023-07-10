@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    script {
+        currentVersion = sh(returnStdout: true, script: 'kubectl get deployment/gmustudentsurveydeploy -o jsonpath="{.spec.template.spec.containers[0].image}"').trim().split(':').last()
+        newVersion = currentVersion.toInteger() + 1
+        newImageTag = "erikkitchen/gmustudentsurvey:${newVersion}"
+    }
+
     stages {
         stage('Create new war File') {
             steps {
@@ -20,9 +26,9 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'DockerLogin', usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_PASS')]) {
             sh "docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS"
              sh 'ls -la'
-            sh 'docker build -t erikkitchen/gmustudentsurvey:latest .'
+            sh "docker build -t ${newImageTag} ."
             echo 'pushing Student Survey image'
-            sh 'docker push erikkitchen/gmustudentsurvey:latest'
+            sh "docker push ${newImageTag}"
                 }
             }
         }
@@ -33,7 +39,7 @@ pipeline {
                 echo 'Deploy cluster through Rancher'
                 sh 'kubectl config view'
 				sh "kubectl get deployments"
-                sh "kubectl set image deployment/gmustudentsurveydeploy gmustudentsurvey=erikkitchen/gmustudentsurvey:latest"
+                sh "kubectl set image deployment/gmustudentsurveydeploy gmustudentsurvey=${newImageTag}"
 				//sh "kubectl set image deployment/gmustudentsurveydeploy gmustudentsurvey=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
                 sh 'kubectl get services'
                 sh 'kubectl get services -o wide'
