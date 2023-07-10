@@ -7,25 +7,19 @@ pipeline {
                 echo 'Building war file'
                 git branch: 'main', url: 'https://github.com/erikkitchen/SWE_645_HW2.git'
                 sh 'rm -rf *.war'
-                sh 'jar -cvf Student_Survey.war -C ${WORKSPACE}/ .'
-                withCredentials([usernamePassword(credentialsId: 'DockerLogin', usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_PASS')]) {
-            sh "docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS"
-            sh 'docker build -t erikkitchen/gmustudentsurvey:latest .'
-            echo 'pushing Student Survey image'
-            sh 'docker push erikkitchen/gmustudentsurvey:latest'
-                }
+                sh 'jar -cvf Student_Survey.war -C ./ .'
             }
         }
             
          stage('Build and push Student Survey image') {
             steps {
         echo 'Building Student Survey image'
-       /* withCredentials([usernamePassword(credentialsId: 'DockerLogin', usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_PASS')]) {
+        withCredentials([usernamePassword(credentialsId: 'DockerLogin', usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_PASS')]) {
             sh "docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS"
             sh 'docker build -t erikkitchen/gmustudentsurvey:latest .'
             echo 'pushing Student Survey image'
             sh 'docker push erikkitchen/gmustudentsurvey:latest'
-                }*/
+                }
             }
         }
         
