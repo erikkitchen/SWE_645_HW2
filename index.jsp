@@ -9,7 +9,7 @@
             <img class="gmu_Logo" src="./img/GMU_Logo.png" alt="GMU image" >
         </nav>
         <form id="studentForm">
-            <h1>Student Survey Test</h1>
+            <h1>Student Survey T</h1>
             <div id="contactInfo">
                 <div class="formItem half">
                     <label for="fname"><span class="required">*</span>First name:</label><br>
