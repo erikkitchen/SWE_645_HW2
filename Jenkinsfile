@@ -6,8 +6,11 @@ pipeline {
             steps {
                 echo 'Building war file'
                 git branch: 'main', url: 'https://github.com/erikkitchen/SWE_645_HW2.git'
+                sh 'ls -la'
                 sh 'rm -rf *.war'
+                sh 'ls -la'
                 sh 'jar -cvf Student_Survey.war -C ./ .'
+                sh 'ls -la'
             }
         }
             
