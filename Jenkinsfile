@@ -29,7 +29,8 @@ pipeline {
                 echo 'Deploy cluster through Rancher'
                 sh 'kubectl config view'
 				sh "kubectl get deployments"
-				sh "kubectl set image deployment/gmustudentsurveydeploy gmustudentsurvey=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
+                sh "kubectl set image deployment/gmustudentsurveydeploy gmustudentsurvey=erikkitchen/gmustudentsurvey:latest"
+				//sh "kubectl set image deployment/gmustudentsurveydeploy gmustudentsurvey=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
                 sh 'kubectl get services'
                 sh 'kubectl get services -o wide'
                 sh 'kubectl get nodes -o wide'
