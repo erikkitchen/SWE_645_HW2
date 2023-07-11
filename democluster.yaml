@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Config
+clusters:
+- name: "democluster"
+  cluster:
+    server: "https://ec2-34-205-71-8.compute-1.amazonaws.com/k8s/clusters/c-2st4r"
+    certificate-authority-data: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ2RENDQ\
+      VdPZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQkdNUnd3R2dZRFZRUUtFeE5rZVc1aGJXbGoKY\
+      kdsemRHVnVaWEl0YjNKbk1TWXdKQVlEVlFRRERCMWtlVzVoYldsamJHbHpkR1Z1WlhJdFkyRkFNV\
+      Fk0T1RBMApNREl3TXpBZUZ3MHlNekEzTVRFd01UVXdNRE5hRncwek16QTNNRGd3TVRVd01ETmFNR\
+      Vl4SERBYUJnTlZCQW9UCkUyUjVibUZ0YVdOc2FYTjBaVzVsY2kxdmNtY3hKakFrQmdOVkJBTU1IV\
+      1I1Ym1GdGFXTnNhWE4wWlc1bGNpMWoKWVVBeE5qZzVNRFF3TWpBek1Ga3dFd1lIS29aSXpqMENBU\
+      VlJS29aSXpqMERBUWNEUWdBRU5vYkpzbHJzdkg3dgpxK2RZd1BLT3FEbDE2bVBTNDE1TzlyOFRoW\
+      TA3NTdVeWN6a3JBakU4eXlPcXl5RFdNQ2Y3aDl0dDNJVVpoTnhLCmZMMXZkYk43UWFOQ01FQXdEZ\
+      1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWUQKVlIwT0JCWUVGR\
+      m10OTQrSUN0N1ZjbWV5djJ1MTlQbFBPS21qTUFvR0NDcUdTTTQ5QkFNQ0EwY0FNRVFDSUdZeQpic\
+      zFFUVQ5dUJVRWk0NWlUMnFITlBCV2ZTMUFqVXdpKzZPcW9VeHR5QWlCVk1hUSsvbmdxYjBua2pnR\
+      FY3a3JrCmNrb2M0RU9tOWY5OHpvbDI4MjdHN0E9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t"
+
+users:
+- name: "democluster"
+  user:
+    token: "kubeconfig-user-5khkmtx9d9:l54w8tzwl4jmvrvxzp79fr8sjb2xghl87xkt96cl7zqfl6ncwvkzpt"
+
+
+contexts:
+- name: "democluster"
+  context:
+    user: "democluster"
+    cluster: "democluster"
+
+current-context: "democluster"
