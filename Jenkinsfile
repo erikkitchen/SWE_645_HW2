@@ -30,9 +30,23 @@ pipeline {
             steps {
                 echo 'Deploy cluster through Rancher'
                 sh 'kubectl config view'
-                sh "kubectl create deployment gmustudentsurveydeploy --image=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
+                script {
+                    // Check if the deployment already exists
+                    def deploymentExists = sh(returnStdout: true, script: 'kubectl get deployments gmustudentsurveydeploy --no-headers --output=name').trim()
+                    
+                    // Use if statement to conditionally skip the deployment creation
+                    if (deploymentExists) {
+                        sh "kubectl set image deployment/gmustudentsurveydeploy gmustudentsurvey=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
+                    } else {
+                        // Create the deployment
+                        sh "kubectl create deployment gmustudentsurveydeploy --image=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
+                        sh "kubectl set image deployment/gmustudentsurveydeploy gmustudentsurvey=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
+
+                    }
+                }
+                /*sh "kubectl create deployment gmustudentsurveydeploy --image=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
 				sh "kubectl get deployments"
-                sh "kubectl set image deployment/gmustudentsurveydeploy gmustudentsurvey=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"
+                sh "kubectl set image deployment/gmustudentsurveydeploy gmustudentsurvey=erikkitchen/gmustudentsurvey:${env.BUILD_ID}"*/
 
             }
         }
